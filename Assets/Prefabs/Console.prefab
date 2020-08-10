@@ -527,6 +527,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCommandsInStack: 300
   player: {fileID: 0}
+  world: {fileID: 0}
+  map: {fileID: 0}
   commandWindow: {fileID: 809240472996457415}
   inputField: {fileID: 809240473669971189}
   scrollbar: {fileID: 809240472280268763}
@@ -579,8 +581,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c5fc3cd810ee541a1f8b65df93644b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onScreen: {x: 0, y: 0}
-  offScreen: {x: 300, y: 0}
+  startOnScreen: 1
+  transitionDuration: 0.5
+  onScreen: {x: 512, y: 0}
+  offScreen: {x: 812, y: 0}
 --- !u!1 &809240473669971191
 GameObject:
   m_ObjectHideFlags: 0

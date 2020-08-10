@@ -9,6 +9,7 @@ namespace CrimeCommand.World {
 		[SerializeField] private Color defaultColor = new Color(1, 59f / 255, 59f / 255, 32f / 255);
 		[SerializeField] private Color hackedColor = new Color(12f / 255, 20f / 255, 1, 32f / 255);
 		[SerializeField] private Light spotlight = null;
+		[SerializeField] private float rotationAmount = 15;
 		[SerializeField] private Vector2 angleExtents = new Vector2(-45, 45);
 
 		public bool IsHacked { 
@@ -76,7 +77,12 @@ namespace CrimeCommand.World {
 
 			isRotating = true;
 
-			float change = (isRotatingClockwise ? 15 : -15);
+			float change = (isRotatingClockwise ? rotationAmount : -rotationAmount);
+			if (currentRotation + change > angleExtents.y || currentRotation + change < angleExtents.x) {
+				isRotating = false;
+				yield break;
+			}
+
 			currentRotation += change;
 			Vector3 degrees = Vector3.up * change;
 

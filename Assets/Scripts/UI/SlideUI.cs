@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace CrimeCommand.UI {
@@ -16,6 +15,10 @@ namespace CrimeCommand.UI {
 		private void Start() {
 			isOnScreen = startOnScreen;
 			rect = GetComponent<RectTransform>();
+
+			if (isOnScreen) {
+				onScreen = rect.localPosition;
+			}
 		}
 
 		public void Toggle() {
@@ -29,10 +32,10 @@ namespace CrimeCommand.UI {
 
 			isSliding = true;
 			for (float t = 0; t < 1; t += Time.deltaTime / transitionDuration) {
-				rect.anchoredPosition = Vector2.Lerp(on ? offScreen : onScreen, on ? onScreen : offScreen, t);
+				rect.localPosition = Vector2.Lerp(on ? offScreen : onScreen, on ? onScreen : offScreen, t);
 				yield return null;
 			}
-			rect.anchoredPosition = on ? onScreen : offScreen;
+			rect.localPosition = on ? onScreen : offScreen;
 			isOnScreen = !isOnScreen;
 			isSliding = false;
 		}
